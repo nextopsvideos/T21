@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multic-pod
+  labels:
+    name: multic-pod
+spec:
+  containers:
+  - name: multic-pod
+    image: nginx
+    ports:
+      - containerPort: 80
+  - name: sidecar
+    image: python:3
+    command: ["python"]
+    args: ["-c", "import math; num = 5; result = math.factorial(num); print(f'The factorial of {num} is {result}')"]    
