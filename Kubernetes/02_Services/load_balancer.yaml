@@ -5,6 +5,7 @@ metadata:
   labels: 
     app: nginx-lb-deploy
 spec:
+  #replicas: 5
   selector:
     matchLabels:
       app: nginx-lb-deploy
@@ -32,4 +33,3 @@ spec:
   - port: 80
     targetPort: 80
   type: LoadBalancer
-
