@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress #Resource
+metadata: 
+  name: k8s-staging-ingress
+  annotations: 
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    cert-manager.io/cluster-issuer: "letsencrypt-staging" 
+spec: 
+  ingressClassName: nginx
+  tls: 
+  - hosts:
+    - nginx.nextops.in
+    - httpd.nextops.in
+    secretName: nextops-staging-tls 
+  rules:
+  - host: nginx.nextops.in
+    http: 
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: nginx
+              port:
+                number: 80
+  - host: httpd.nextops.in
+    http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: httpd
+              port:
+                number: 80
