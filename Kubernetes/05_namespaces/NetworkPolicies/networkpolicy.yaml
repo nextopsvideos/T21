@@ -1,0 +1,17 @@
+# Make sure to enable Calico Network Policy on your GKE cluster before applying these changes.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-cross-ns-comm
+  namespace: dev-team
+spec:
+  podSelector:
+    matchLabels:
+      app: nginx-deploy
+  policyTypes:
+  - Ingress 
+  ingress: 
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          nsname: default

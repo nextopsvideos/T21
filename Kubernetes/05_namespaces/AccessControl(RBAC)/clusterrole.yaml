@@ -1,8 +1,7 @@
 apiVersion: rbac.authorization.k8s.io/v1 
-kind: Role 
+kind: ClusterRole 
 metadata: 
-   name: pod-log-reader 
-   namespace: dev-team
+   name: pod-log-reader-clusterrole
 rules: 
 - apiGroups:
     - ""

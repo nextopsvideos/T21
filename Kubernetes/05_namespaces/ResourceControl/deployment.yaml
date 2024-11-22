@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment #Controller
+metadata:
+  name: nginx-deploy
+  labels:
+    app: nginx-deploy
+  namespace: dev-team
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: nginx-deploy
+  template:
+    metadata:      
+      labels:
+        app: nginx-deploy
+    spec:
+      containers:
+      - name: nginx-pod
+        image: nginx
+        ports:
+          - containerPort: 80
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "200Mi" 
+          limits:
+            cpu: "150m"
+            memory: "250Mi"
