@@ -1,0 +1,17 @@
+# gcloud compute disks create gke-pv --zone=us-central1-c --size=5GB <--- to create a disk on gcp
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: manual-disk-vol
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce #First Pod/First Node
+  persistentVolumeReclaimPolicy: Retain
+  gcePersistentDisk:
+    pdName: gke-pv
+    fsType: ext4
+  claimRef:
+    namespace: default 
+    name: manual-disk-pvc
