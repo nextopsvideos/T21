@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: filestore-pvc
+spec:
+  resources:
+    requests:
+      storage: 1Ti
+  accessModes:
+    - ReadWriteMany 
+  storageClassName: custom-filestore-sc

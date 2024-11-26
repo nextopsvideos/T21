@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fs-deployment
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: fs-container
+        image: httpd
+        ports:
+        - containerPort: 80
+        volumeMounts: 
+          - name: fs-volume
+            mountPath: /dynfsdata
+      volumes: 
+        - name: fs-volume 
+          persistentVolumeClaim:
+            claimName: filestore-pvc
+      resources:

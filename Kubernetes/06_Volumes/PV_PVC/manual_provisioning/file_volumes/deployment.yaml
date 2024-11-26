@@ -1,30 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-pd
+  name: nginx-fs
 spec:
   replicas: 10
   selector:
     matchLabels:
-      app: nginx-pd
+      app: nginx-fs
   template:
     metadata:
       labels:
-        app: nginx-pd
+        app: nginx-fs
     spec:
       containers:
-      - name: nginx-pd
+      - name: nginx-fs
         image: nginx
         resources:
           # limits:
           #   memory: "128Mi"
           #   cpu: "500m"
         ports:
-        - containerPort: 80
+          - containerPort: 80
         volumeMounts:
-          - name: manual-disk-vol
-            mountPath: /manual-disk-vol-data
-      volumes: 
-      - name: manual-disk-vol
-        persistentVolumeClaim: 
-          claimName: manual-disk-pvc
+          - name: file-volume
+            mountPath: /data
+      volumes:
+        - name: file-volume 
+          persistentVolumeClaim: 
+            claimName: file-store-vol-claim

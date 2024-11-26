@@ -1,0 +1,14 @@
+# go to google console and create a filestore manually for this scenario
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: file-store-vol
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany 
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: /manualfilevol
+    server: 10.78.156.82
