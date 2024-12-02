@@ -30,4 +30,6 @@ spec:
                   - key: app
                     operator: In 
                     values: 
-                    - httpd-app
+                    - httpd-
+                    
+# kubectl label node location=us-central1-c
