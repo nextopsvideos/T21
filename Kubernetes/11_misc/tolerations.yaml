@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taints-tol-example
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: nginx-app
+  template:
+    metadata:
+      labels:
+        app: nginx-app
+    spec:
+      containers:
+      - name: nginx-app
+        image: nginx
+        resources:
+          # limits:
+          #   memory: "128Mi"
+          #   cpu: "500m"
+        ports:
+        - containerPort: 80
+      tolerations:
+      - key: "app"
+        operator: "Equal"
+        value: "nginx-app"
+        effect: NoSchedule
+
+#kubectl taint node gke-nextopsgke21-default-pool-a7f42085-5w8h app=nginx-app:NoSchedule
