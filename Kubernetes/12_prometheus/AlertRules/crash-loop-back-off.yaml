@@ -1,0 +1,13 @@
+#do not use this to simulate alert rule, because it dont work
+apiVersion: v1
+kind: Pod
+metadata:
+  name: crash-loop-backoff-example
+spec:
+  restartPolicy: Always  # Set the restart policy at the pod level
+  containers:
+    - name: faulty-container
+      image: busybox
+      command: ["sh", "-c", "exit 1"]  # This command will cause the container to exit immediately
+      #resources:
+     

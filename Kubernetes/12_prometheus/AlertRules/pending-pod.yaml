@@ -1,0 +1,15 @@
+#for simulating alterrule use this yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pending-pod-example
+spec:
+  containers:
+    - name: resource-hungry-container
+      image: nginx
+      resources:
+        requests:
+          memory: "1000Mi"   # Requesting very high memory
+          cpu: "1000m"        # Requesting a large number of CPU cores
+      ports:
+        - containerPort: 80

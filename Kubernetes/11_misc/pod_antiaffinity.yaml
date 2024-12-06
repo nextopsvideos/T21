@@ -1,35 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: http-pod-affinity
+  name: nginx-app
 spec:
-  replicas: 5
+  replicas: 10
   selector:
     matchLabels:
-      app: httpd-app
+      app: nginx-app
   template:
     metadata:
       labels:
-        app: httpd-app
+        app: nginx-app
     spec:
       containers:
-      - name: httpd-app
-        image: httpd
+      - name: nginx-app
+        image: nginx
         resources:
           # limits:
           #   memory: "128Mi"
           #   cpu: "500m"
         ports:
         - containerPort: 80
-      affinity:
-        podAffinity:
+      affinity: 
+        podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-            - topologyKey: location
+            - topologyKey: env
               labelSelector:
                 matchExpressions:
-                  - key: app
+                  - key: app 
                     operator: In 
-                    values: 
-                    - httpd-app
-                    
-# kubectl label node location=us-central1-c
+                    values:
+                      - nginx-app
