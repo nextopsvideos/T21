@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: queue-processor
+  labels:
+    app: queue-processor
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: queue-processor
+  template:
+    metadata:
+      labels:
+        app: queue-processor
+    spec:
+      containers:
+      - name: queue-processor
+        image: your-image:latest
+        env:
+        - name: AzureWebJobsServiceBus
+          valueFrom:
+            secretKeyRef:
+              name: azure-servicebus-secret
+              key: connectionString

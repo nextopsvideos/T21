@@ -1,0 +1,20 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: servicebus-queue-scaler
+  namespace: default
+spec:
+  scaleTargetRef:
+    name: queue-processor
+  pollingInterval: 5          # Check the queue every 5 seconds
+  cooldownPeriod: 30          # Wait 30 seconds to scale down
+  minReplicaCount: 0          # Minimum replicas
+  maxReplicaCount: 10         # Maximum replicas
+  triggers:
+  - type: azure-servicebus
+    metadata:
+      namespace: YourServiceBusNamespace
+      queueName: YourQueueName
+      messageCount: "5"       # Scale when 5 or more messages are in the queue
+    authenticationRef:
+      name: azure-servicebus-trigger-auth

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keyvault-access-app
+  labels:
+    app: keyvault-access-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keyvault-access-app
+  template:
+    metadata:
+      labels:
+        app: keyvault-access-app
+    spec:
+      containers:
+      - name: keyvault-access-app
+        image: nginx
+        volumeMounts:
+        - name: akv-secrets-volume
+          mountPath: "/tmp/secrets-store"
+          readOnly: true
+      volumes:
+        - name: akv-secrets-volume
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: "nextopsakvt21-scp"      
