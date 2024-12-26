@@ -7,14 +7,6 @@ terraform {
       version = "=4.14.0"
     }
   }
-
-  backend "azurerm" {
-    resource_group_name = "NextOps"
-    storage_account_name = "teststorageacc"
-    container_name = "tfstate"
-    key = "QA/qa.tfstate"    
-    #access_key = "sdfdffdvfdvrferwfefqerfqfre"
-  }
 }
 
 # Configure the Microsoft Azure Provider
@@ -25,7 +17,7 @@ provider "azurerm" {
   # client_id       = "xxxxxx-xxxxxx-xxxxxx-xxx-xxx"
   # client_secret   = "xxxxxx-xxxxxx-xxxxxx-xxx-xxx""
   # tenant_id       = "xxxxxx-xxxxxx-xxxxxx-xxx-xxx"
-  subscription_id = "xxx-xxxxxx-xxxxxx-xxx-xxx"
+  subscription_id = "a355c32e-4a22-4b05-aab4-be236850fa6e"
  
 }
 
