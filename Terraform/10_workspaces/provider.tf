@@ -12,8 +12,7 @@ terraform {
     resource_group_name = "NextOps"
     storage_account_name = "teststorageacc"
     container_name = "tfstate"
-    key = "QA/qa.tfstate"    
-    #access_key = "sdfdffdvfdvrferwfefqerfqfre"
+    key = "terraform.tfstate"
   }
 }
 
@@ -25,7 +24,7 @@ provider "azurerm" {
   # client_id       = "xxxxxx-xxxxxx-xxxxxx-xxx-xxx"
   # client_secret   = "xxxxxx-xxxxxx-xxxxxx-xxx-xxx""
   # tenant_id       = "xxxxxx-xxxxxx-xxxxxx-xxx-xxx"
-  subscription_id = "xxx-xxxxxx-xxxxxx-xxx-xxx"
+  subscription_id = "xxxxxx-xxxxxx-xxxxxx-xxx-xxx"
  
 }
 

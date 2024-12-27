@@ -7,6 +7,6 @@ variable "resourcedetails" {
       subnet_name       = string
       address_prefix    = list(string)
       vm_name           = string
-      size              = string 
+      size              = string
     }))  
 }
