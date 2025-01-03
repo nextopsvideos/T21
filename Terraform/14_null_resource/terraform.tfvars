@@ -1,0 +1,6 @@
+rg_location = "westus"
+rg_name = "nullRG"
+asp_name = "nextopsaspt21"
+app_name = "nextopsappt21"
+os_type = "Linux"
+sku_name = "Standard_S1"
