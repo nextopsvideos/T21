@@ -13,7 +13,7 @@ terraform {
     storage_account_name = "teststorageacc"
     container_name = "tfstate"
     key = "terraform.tfstate"    
-    #access_key = "sdfdffdvfdvrferwfefqerfqfre"
+    access_key = "sdfdffdvfdvrferwfefqerfqfre"
   }
 }
 
@@ -22,9 +22,9 @@ provider "azurerm" {
   resource_provider_registrations = "none" # This is only required when the User, Service Principal, or Identity running Terraform lacks the permissions to register Azure Resource Providers.
   features {}
 
-  # client_id       = "xxxxxx-xxxxxx-xxxxxx-xxx-xxx"
-  # client_secret   = "xxxxxx-xxxxxx-xxxxxx-xxx-xxx""
-  # tenant_id       = "xxxxxx-xxxxxx-xxxxxx-xxx-xxx"
+  client_id       = "xxxxxx-xxxxxx-xxxxxx-xxx-xxx"
+  client_secret   = "xxxxxx-xxxxxx-xxxxxx-xxx-xxx"
+  tenant_id       = "xxxxxx-xxxxxx-xxxxxx-xxx-xxx"
   subscription_id = "xxxxxx-xxxxxx-xxxxxx-xxx-xxx"
  
 }
