@@ -1,0 +1,14 @@
+- name: creating dyn vars using command module
+  hosts: clients
+  remote_user: root 
+
+  tasks: 
+  - name: create a var with remote hostname 
+    command: hostname 
+    register: hostname_var
+  
+  - name: print dyn var value on the screen 
+    debug:
+      msg: "{{ hostname_var.stdout }}"
+  
+  

@@ -1,0 +1,34 @@
+- name: Install LAMP stack 
+  hosts: clients
+  remote_user: root 
+
+  tasks: 
+  - include_vars: lamp_vars.txt #<---- from variable file
+  - name: Running apt-update
+    apt:
+      update-cache: yes
+  
+  - name: stoppping apache service
+    service: 
+      name: "{{ apache_pkg }}"
+      state: stopped 
+  
+  - name: uninstalling apache
+    apt:
+      name: "{{ apache_pkg }}"
+      state: absent
+  
+  - name: stoppping mysql service
+    service: 
+      name: "{{ mysql_service }}"
+      state: stopped 
+  
+  - name: uninstalling mysql
+    apt:
+      name: "{{ mysql_pkg }}"
+      state: absent
+
+  - name: uninstalling php
+    apt:
+      name: "{{ php_pkgs }}"
+      state: absent

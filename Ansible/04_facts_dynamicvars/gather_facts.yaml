@@ -1,0 +1,9 @@
+- name: facts playbook
+  hosts: clients
+  remote_user: root 
+  gather_facts: yes 
+
+  tasks:
+  - name: Display the gathered facts
+    debug:
+      var: ansible_facts

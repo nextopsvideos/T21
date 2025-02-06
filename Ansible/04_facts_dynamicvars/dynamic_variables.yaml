@@ -1,0 +1,13 @@
+- name: creating hostname var from facts
+  hosts: clients
+  remote_user: root
+  gather_facts: yes 
+  
+  tasks:
+  - name: gather facts and create a var named ansible_facts
+    debug:
+      var: ansible_facts
+  
+  - name: create a specific dyn var 
+    debug:
+      msg: "{{ ansible_facts.hostname }}" 

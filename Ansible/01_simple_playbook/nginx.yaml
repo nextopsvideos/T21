@@ -1,0 +1,27 @@
+- name: Install nano and nginx apps
+  hosts: clients
+  remote_user: root 
+
+  tasks:
+  - name: Running apt-update
+    apt:
+      update-cache: yes
+
+  - name: Install Nano app
+    apt: 
+      name: nano
+      state: present 
+  
+  - name: Install nginx app
+    apt: 
+      name: nginx
+      state: present
+
+  - name: execute ifconfig command
+    shell: ifconfig
+  
+  - name: copy files to remote machine
+    copy: 
+      src: "/home/charan/kind-cluster.yaml"
+      dest: "/root/"
+      

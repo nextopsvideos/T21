@@ -1,0 +1,20 @@
+- name: installing a pkg based on hostname 
+  hosts: clients
+  remote_user: root 
+
+  tasks:
+  - name: create a var with remote hostname 
+    command: hostname 
+    register: hostname_var
+  
+  - name: Install apache2 on a server with hostname client01
+    apt:
+      name: apache2
+      state: present 
+    when: hostname_var.stdout == "client01"
+  
+  - name: Install nginx on a server with hostname client02
+    apt:
+      name: nginx
+      state: present 
+    when: hostname_var.stdout == "client02"
