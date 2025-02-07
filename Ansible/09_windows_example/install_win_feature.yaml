@@ -1,0 +1,8 @@
+- name: Installing Fax Server feature on Windows
+  hosts: win
+  
+  tasks:
+  - name: Install Fax Server
+    win_feature:
+      name: Fax
+      state: present

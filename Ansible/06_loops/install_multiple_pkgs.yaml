@@ -1,0 +1,19 @@
+- name: Install multiple packages with loop
+  hosts: clients 
+  remote_user: root 
+
+  vars: 
+    utilities_to_install:
+      - vim 
+      - curl 
+      - wget
+      - tree
+  
+  tasks:
+    - name: installing utilities using loop
+      apt:
+        name: "{{ item }}"
+        state: present       
+      with_items: "{{ utilities_to_install }}"
+
+    

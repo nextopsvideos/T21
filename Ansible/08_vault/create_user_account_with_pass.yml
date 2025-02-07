@@ -1,0 +1,12 @@
+- name: create user account with plain text pass 
+  hosts: clients 
+  remote_user: root 
+  vars:
+    secret: Secure*123
+  
+  tasks:
+  - name: create a new user account 
+    user: 
+      name: user4 
+      password: "{{ secret }}"
+      state: present
